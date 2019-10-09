@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
+import org.telegram.telegrambots.meta.generics.BotOptions;
 
 public class Bot extends TelegramLongPollingBot {
 
@@ -23,7 +24,11 @@ public class Bot extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(update.getMessage().getChatId().toString());
-        sendMessage.setText(message);
+        if (message.compareTo("weather") > 0) {
+            sendMessage.setText("normas");
+        } else {
+            sendMessage.setText(message);
+        }
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {

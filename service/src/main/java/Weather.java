@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class Weather {
     public String getWeather(String site) throws IOException {
-        URL url = null;
+        URL url;
         try {
             url = new URL(site);
         } catch (MalformedURLException e) {
@@ -16,7 +16,6 @@ public class Weather {
         }
         BufferedReader in = null;
         try {
-            assert url != null;
             in = new BufferedReader(new InputStreamReader(url.openStream()));
         } catch (IOException e) {
             e.printStackTrace();

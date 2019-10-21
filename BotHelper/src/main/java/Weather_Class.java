@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Weather_Class {
-    public static String getWeather(String site) throws IOException {
+    public String getWeather(String site) throws IOException {
         URL url = null;
         try {
             url = new URL(site);
@@ -28,10 +30,11 @@ public class Weather_Class {
         return weatherHandler(html.toString());
     }
 
-    public static String weatherHandler(String text) {
-        if (text.compareTo("") == 0) {
+    public String weatherHandler(String text) {
+        if (StringUtils.isBlank(text)) {
             return "There is no text";
         }
+        double absoluteZero = -273.15;
         String[] data = text.split(",");
         String weather = "";
         String temperature = "";
@@ -46,14 +49,14 @@ public class Weather_Class {
         temperature = parser(temperature);
         int temp;
         try {
-            temp = (int) Math.round(Double.parseDouble(temperature) - 273.15);
+            temp = (int) Math.round(Double.parseDouble(temperature) + absoluteZero);
         } catch (Exception e) {
             return "There is bad data";
         }
         return "weather is " + weather + " and temperature is " + temp;
     }
 
-    public static String parser(String s) {
+    public String parser(String s) {
         String[] data = s.split(":");
         String result;
         try {

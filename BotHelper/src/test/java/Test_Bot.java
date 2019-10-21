@@ -11,10 +11,15 @@ public class Test_Bot {
     }
 
     @Test
-    public void testGetBotToken() {
-        String expected = "token";
-        Bot bot = new Bot();
-        String actual = bot.getBotToken();
-        Assert.assertEquals(expected, actual);
+    public void testMessageParser() {
+        String[] expected = new String[] {"It's help", "abc"};
+        String[] args = new String[] {"/help", "abc"};
+        String[] actual = new String[expected.length];
+        for (int i = 0; i < args.length; i++) {
+            actual[i] = Bot.messageParser(args[i]);
+        }
+        for (int i = 0; i < expected.length; i++) {
+            Assert.assertEquals(expected[i], actual[i]);
+        }
     }
 }

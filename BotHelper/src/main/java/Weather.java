@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Weather_Class {
+public class Weather {
     public String getWeather(String site) throws IOException {
         URL url = null;
         try {

@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 public class Test_Weather {
     @Test
     public void testWeatherAPI() throws IOException {
-        Weather_Class weather = new Weather_Class();
+        Weather weather = new Weather();
         String expected = "weather is light intensity drizzle and temperature is 6";
         String actual = weather.getWeather("https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22");
         Assert.assertEquals(expected, actual);
@@ -15,7 +15,7 @@ public class Test_Weather {
 
     @Test
     public void testSiteParser() {
-        Weather_Class weather = new Weather_Class();
+        Weather weather = new Weather();
         String[] expected = new String[] {"There is null site"};
         String[] actual = new String[expected.length];
         String[] args = new String[] {null, "123.com"};
@@ -34,7 +34,7 @@ public class Test_Weather {
 
     @Test
     public void testWeatherParser() {
-        Weather_Class weather = new Weather_Class();
+        Weather weather = new Weather();
         String expected = "def";
         String[] args = new String[] {"abc:\"def\"", "abc:def", "abc:\"def", "abc:def\""};
         String[] actual = new String[4];
@@ -49,7 +49,7 @@ public class Test_Weather {
 
     @Test
     public void testWeatherHandler() {
-        Weather_Class weather = new Weather_Class();
+        Weather weather = new Weather();
         String[] expected = new String[] {"There is no text", "There is bad data"};
         String[] args = new String[] {"", "foo"};
         String[] actual = new String[expected.length];

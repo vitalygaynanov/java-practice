@@ -25,7 +25,7 @@ public class Bot extends TelegramLongPollingBot {
 
     public static String messageParser (String message){
         if (message.contains("/weather")) {
-            Weather_Class weather = new Weather_Class();
+            Weather weather = new Weather();
             String city = message.split(" ")[1];
             String appid = "&APPID=";
             String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;

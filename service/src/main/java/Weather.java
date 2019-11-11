@@ -22,7 +22,10 @@ public class Weather {
         }
         String input;
         StringBuilder html = new StringBuilder();
-        assert in != null;
+        if (in == null){
+            return "There is null site";
+        }
+        in.close();
         while((input = in.readLine()) != null) {
             html.append(input);
         }
@@ -59,11 +62,7 @@ public class Weather {
         String[] data = s.split(":");
         String result;
         try {
-            if (data[1].contains("\"")) {
-                result = data[1].replace("\"", "");
-            } else {
-                result = data[1];
-            }
+            result = data[1].replace("\"", "");
         } catch (Exception e) {
             return "There is bad data";
         }

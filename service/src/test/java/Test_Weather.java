@@ -16,19 +16,12 @@ public class Test_Weather {
     @Test
     public void testSiteParser() {
         Weather weather = new Weather();
-        String[] expected = new String[] {"There is null site"};
-        String[] actual = new String[expected.length];
-        String[] args = new String[] {null, "123.com"};
+        String expected = "There is null site";
+        String actual = "";
         try {
-            for (int i = 0; i < expected.length; i++) {
-                for (String element : args) {
-                    actual[i] = weather.getWeather(element);
-                }
-            }
+            weather.getWeather(null);
         } catch (Exception e) {
-            for (String element : actual) {
-                Assert.assertEquals(expected[0], element);
-            }
+            Assert.assertEquals(expected, actual);
         }
     }
 

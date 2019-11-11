@@ -1,10 +1,7 @@
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 import java.io.IOException;
 
@@ -27,16 +24,18 @@ public class Bot extends TelegramLongPollingBot {
         if (message.contains("/weather")) {
             Weather weather = new Weather();
             String city = message.split(" ")[1];
-            String appid = "&APPID=";
+            String appid = "&APPID=" + Main.parser("appid");
             String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
             try {
                 return weather.getWeather(s);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (message.contains("/help")) {
+        } else if (message.equals("/help")) {
             return "It's help"; // write help message
-        }
+        } else if (message.equals("/start")) {
+		return "It's start"; // write start message
+	}
         return message;
     }
 
@@ -45,6 +44,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotToken() {
-        return "token";
+        return Main.parser("token");
     }
 }

@@ -15,8 +15,9 @@ public class Test_Bot {
         String[] expected = new String[] {"It's help", "abc"};
         String[] args = new String[] {"/help", "abc"};
         String[] actual = new String[expected.length];
+        Bot bot = new Bot();
         for (int i = 0; i < args.length; i++) {
-            actual[i] = Bot.messageParser(args[i]);
+            actual[i] = bot.messageParser(args[i]);
         }
         for (int i = 0; i < expected.length; i++) {
             Assert.assertEquals(expected[i], actual[i]);

@@ -7,6 +7,15 @@ import java.io.IOException;
 
 public class Bot extends TelegramLongPollingBot {
 
+    private String token;
+    private String appid;
+
+    public Bot() {
+        String[] s = Parser.parser();
+        this.token = s[0];
+        this.appid = s[1];
+    }
+
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
         SendMessage sendMessage = new SendMessage();
@@ -20,11 +29,11 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public static String messageParser (String message){
+    public String messageParser (String message){
         if (message.contains("/weather")) {
             Weather weather = new Weather();
             String city = message.split(" ")[1];
-            String appid = "&APPID=" + Main.parser("appid");
+            String appid = "&APPID=" + this.appid;
             String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
             try {
                 return weather.getWeather(s);
@@ -44,6 +53,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotToken() {
-        return Main.parser("token");
+        return this.token;
     }
 }
